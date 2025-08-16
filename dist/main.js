@@ -1,29 +1,61 @@
 "use strict";
-var Status;
-(function (Status) {
-    Status["Pending"] = "Pending";
-    Status["Done"] = "Done";
-})(Status || (Status = {}));
-let todos = [];
-let idCounter = 1;
-function addTodo(title) {
-    todos.push({ id: idCounter++, title, status: Status.Pending });
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
+let tasks = [];
+let taskId = 1;
+// Add task function
+function addTask(title) {
+    if (!title)
+        return;
+    const newTask = { id: taskId++, title, completed: false };
+    tasks.push(newTask);
+    renderTasks();
+    taskInput.value = "";
 }
-function completeTodo(id) {
-    const todo = todos.find(t => t.id === id);
-    if (todo)
-        todo.status = Status.Done;
+// Toggle complete
+function toggleTask(id) {
+    const task = tasks.find(t => t.id === id);
+    if (task)
+        task.completed = !task.completed;
+    renderTasks();
 }
-function showTodos() {
-    console.log("=== Todo List ===");
-    todos.forEach(todo => {
-        console.log(`${todo.id}. ${todo.title} - ${todo.status}`);
+// Delete task
+function deleteTask(id) {
+    tasks = tasks.filter(t => t.id !== id);
+    renderTasks();
+}
+// Render tasks to DOM
+function renderTasks() {
+    taskList.innerHTML = ""; // Clear list
+    tasks.forEach(task => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+      <span style="text-decoration: ${task.completed ? "line-through" : "none"}">${task.title}</span>
+      <button data-id="${task.id}" class="completeBtn">✔</button>
+      <button data-id="${task.id}" class="deleteBtn">✖</button>
+    `;
+        taskList.appendChild(li);
+    });
+    // Add event listeners for new buttons
+    document.querySelectorAll(".completeBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.dataset.id);
+            toggleTask(id);
+        });
+    });
+    document.querySelectorAll(".deleteBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.dataset.id);
+            deleteTask(id);
+        });
     });
 }
-// Example usage:
-addTodo("Learn TypeScript basics");
-addTodo("Practice enums");
-showTodos();
-completeTodo(1);
-showTodos();
+// Event listener
+addBtn.addEventListener("click", () => addTask(taskInput.value));
+// Optional: add task on Enter
+taskInput.addEventListener("keypress", e => {
+    if (e.key === "Enter")
+        addTask(taskInput.value);
+});
 //# sourceMappingURL=main.js.map
