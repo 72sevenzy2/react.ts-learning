@@ -9,7 +9,7 @@ const obj: omitreset = { count: 0 };
 
 button.addEventListener("click", () => {
   obj.count++;
-  adding.innerHTML = obj.count.toString();
+  adding.innerHTML = String(obj.count);
 })
 
 buttondec.addEventListener("click", () => {
