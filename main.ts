@@ -1,23 +1,12 @@
-const button = document.getElementById("btnclick") as HTMLButtonElement;
-const adding = document.getElementById("btnadd") as HTMLParagraphElement;
-const buttondec = document.getElementById("btnclickdec") as HTMLButtonElement;
-const buttonres = document.getElementById("btnclickres") as HTMLButtonElement;
+const input = document.getElementById("inputtasks") as HTMLInputElement;
+const addtodo = document.getElementById("addtodo") as HTMLButtonElement;
+const tasksul = document.getElementById("tasks") as HTMLUListElement;
 
-interface Proto { count: number; reset: number; }
-type omitreset = Omit<Proto, 'reset'>;
-const obj: omitreset = { count: 0 };
-
-button.addEventListener("click", () => {
-  obj.count++;
-  adding.innerHTML = String(obj.count);
-})
-
-buttondec.addEventListener("click", () => {
-  obj.count--;
-  adding.innerHTML = obj.count.toString();
-})
-
-buttonres.addEventListener("click", () => {
-  obj.count = 0;
-  adding.innerHTML = obj.count.toString();
-})
+interface baset { id: number; }; interface newt extends baset { text: string; };
+let nextId: number = 1;
+addtodo.addEventListener("click", (event): void => {
+  const task = input.value.trim(); if (!task) { return undefined; }
+  const todos: newt = { id: nextId++, text: task }; const li = document.createElement("li");
+  li.innerHTML = `${todos.id} : ${todos.text}`; tasksul.appendChild(li);
+  li.addEventListener("click", (): void => { tasksul.removeChild(li) }); input.value = "";
+});

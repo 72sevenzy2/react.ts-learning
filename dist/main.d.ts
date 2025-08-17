@@ -1,11 +1,11 @@
-declare const button: HTMLButtonElement;
-declare const adding: HTMLParagraphElement;
-declare const buttondec: HTMLButtonElement;
-declare const buttonres: HTMLButtonElement;
-interface Proto {
-    count: number;
-    reset: number;
+declare const input: HTMLInputElement;
+declare const addtodo: HTMLButtonElement;
+declare const tasksul: HTMLUListElement;
+interface baset {
+    id: number;
 }
-type omitreset = Omit<Proto, 'reset'>;
-declare const obj: omitreset;
+interface newt extends baset {
+    text: string;
+}
+declare let nextId: number;
 //# sourceMappingURL=main.d.ts.map
