@@ -1,25 +1,27 @@
-interface itemc { price: number; quantity: number; product: string; }
-class itemgen {
-  private items: itemc[] = [];
-  additems(item: itemc): void { this.items.push(item); }
-  removeitem(product: string): void {
-    this.items = this.items.filter((item, index, array) => {
-      console.log(item, index, array);
-      return item.product !== product;
+interface Student { name: string; grade: number[]; }
+class gradebook {
+  private students: Student[] = [];
+  addstudent(student: Student): void { this.students.push(student); }
+  updategrades(name: string, newgrades: number[]): void {
+    const student = this.students.find(s => s.name === name);
+    if (student) { student.grade = newgrades; }
+  }
+  getaverage(name: string): number | null {
+    const student = this.students.find(s => s.name === name);
+    if (!student) { return null; }
+
+    return student.grade.reduce((a, b) => a + b, 0) / student.grade.length;
+  }
+  getclassaverage(): number {
+    const allgrades = this.students.flatMap(s => s.grade);
+    return allgrades.reduce((a, b) => a + b, 0) / allgrades.length;
+  }
+  gettopstudent(): Student | null {
+    if (this.students.length === 0) { return null; }
+    return this.students.reduce((top, curr) => {
+      const avgtop = top.grade.reduce((a, b) => a + b, 0) / top.grade.length;
+      const avgcurr = curr.grade.reduce((a, b) => a + b, 0) / curr.grade.length;
+      return avgcurr > avgtop ? curr : top;
     })
   }
-  updatequan(product: string, quantity: number): void {
-    const item = this.items.find(i => { i.quantity === quantity; })
-    if (item) { item.quantity = quantity; }
-  }
-  getvalue(): number { return this.items.reduce((total, item) => total + (item.quantity * item.price), 0); }
-  logitems(): void { console.log(this.items); }
 }
-
-const store = new itemgen();
-store.additems({ price: 900, quantity: 2, product: "laptop" });
-store.additems({ price: 2, quantity: 10, product: "milo packets" });
-
-store.updatequan("laptop", 5); store.removeitem("laptop");
-
-store.logitems(); console.log("Total value", store.getvalue());
