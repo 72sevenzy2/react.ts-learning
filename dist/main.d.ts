@@ -1,11 +1,12 @@
 declare const input: HTMLInputElement;
-declare const addtodo: HTMLButtonElement;
-declare const tasksul: HTMLUListElement;
-interface baset {
+declare const add: HTMLButtonElement;
+declare const ul: HTMLUListElement;
+interface proto {
     id: number;
 }
-interface newt extends baset {
+interface newt extends proto {
     text: string;
 }
-declare let nextId: number;
+declare let nextid: number;
+declare function submitconfig(event: KeyboardEvent): void;
 //# sourceMappingURL=main.d.ts.map
