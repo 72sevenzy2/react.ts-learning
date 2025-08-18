@@ -1,12 +1,15 @@
-declare const input: HTMLInputElement;
-declare const add: HTMLButtonElement;
-declare const ul: HTMLUListElement;
-interface proto {
-    id: number;
+interface itemc {
+    price: number;
+    quantity: number;
+    product: string;
 }
-interface newt extends proto {
-    text: string;
+declare class itemgen {
+    private items;
+    additems(item: itemc): void;
+    removeitem(product: string): void;
+    updatequan(product: string, quantity: number): void;
+    getvalue(): number;
+    logitems(): void;
 }
-declare let nextid: number;
-declare function submitconfig(event: KeyboardEvent): void;
+declare const store: itemgen;
 //# sourceMappingURL=main.d.ts.map

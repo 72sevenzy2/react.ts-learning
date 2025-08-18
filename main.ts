@@ -1,17 +1,25 @@
-const input = document.getElementById("inputtasks") as HTMLInputElement;
-const add = document.getElementById("addtodo") as HTMLButtonElement;
-const ul = document.getElementById("tasks") as HTMLUListElement;
-interface proto { id: number }; interface newt extends proto { text: string };
-let nextid = 1;
-add.addEventListener("click", (): void => {
-  const task = input.value.trim(); if (!task) { return undefined };
-  const todos: newt = { id: nextid++, text: task };
+interface itemc { price: number; quantity: number; product: string; }
+class itemgen {
+  private items: itemc[] = [];
+  additems(item: itemc): void { this.items.push(item); }
+  removeitem(product: string): void {
+    this.items = this.items.filter((item, index, array) => {
+      console.log(item, index, array);
+      return item.product !== product;
+    })
+  }
+  updatequan(product: string, quantity: number): void {
+    const item = this.items.find(i => { i.quantity === quantity; })
+    if (item) { item.quantity = quantity; }
+  }
+  getvalue(): number { return this.items.reduce((total, item) => total + (item.quantity * item.price), 0); }
+  logitems(): void { console.log(this.items); }
+}
 
-  const uul = document.createElement("li") as HTMLLIElement;
-  ul.appendChild(uul); uul.innerHTML = `${todos.id} : ${todos.text}`;
-  uul.addEventListener("click", (): void => { ul.removeChild(uul); }); input.value = "";
-})
+const store = new itemgen();
+store.additems({ price: 900, quantity: 2, product: "laptop" });
+store.additems({ price: 2, quantity: 10, product: "milo packets" });
 
-// reusable submit function added
-function submitconfig(event: KeyboardEvent) { if (event.key === "Enter") { add.click(); } }
-input.addEventListener("keydown", submitconfig);
+store.updatequan("laptop", 5); store.removeitem("laptop");
+
+store.logitems(); console.log("Total value", store.getvalue());
