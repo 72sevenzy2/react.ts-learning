@@ -1,27 +1,25 @@
-interface Student { name: string; grade: number[]; }
-class gradebook {
-  private students: Student[] = [];
-  addstudent(student: Student): void { this.students.push(student); }
-  updategrades(name: string, newgrades: number[]): void {
-    const student = this.students.find(s => s.name === name);
-    if (student) { student.grade = newgrades; }
+interface Book { title: string; author: string; borrowed: boolean; id: number; }
+class Newbook {
+  private books: Book[] = [];
+  addbook(book: Book): void {
+    this.books.push(book);
   }
-  getaverage(name: string): number | null {
-    const student = this.students.find(s => s.name === name);
-    if (!student) { return null; }
-
-    return student.grade.reduce((a, b) => a + b, 0) / student.grade.length;
+  borrowbooks(id: number): string {
+    const bezz = this.books.find(j => j.id === id);
+    if (!bezz) { return "book not found"; }
+    if (bezz.borrowed) { return "book already borrowed"; }
+    bezz.borrowed = true; return `you borrowed the book ${bezz.title}`;
   }
-  getclassaverage(): number {
-    const allgrades = this.students.flatMap(s => s.grade);
-    return allgrades.reduce((a, b) => a + b, 0) / allgrades.length;
+  returnbook(id: number): string {
+      const bezz = this.books.find(j => j.id === id);
+      if (!bezz) { return "invalid book"; }
+      if (!bezz.borrowed) { return "u already returned the book"; }
+      bezz.borrowed = false; return `you returned the book ${bezz.title}`
   }
-  gettopstudent(): Student | null {
-    if (this.students.length === 0) { return null; }
-    return this.students.reduce((top, curr) => {
-      const avgtop = top.grade.reduce((a, b) => a + b, 0) / top.grade.length;
-      const avgcurr = curr.grade.reduce((a, b) => a + b, 0) / curr.grade.length;
-      return avgcurr > avgtop ? curr : top;
-    })
+  listavailable(): Book[] {
+    return this.books.filter(j => !j.borrowed);
+  }
+  listunavailable(): Book[] {
+    return this.books.filter(j => j.borrowed);
   }
 }
