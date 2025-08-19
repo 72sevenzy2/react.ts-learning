@@ -1,15 +1,13 @@
-interface itemc {
-    price: number;
-    quantity: number;
-    product: string;
+interface Student {
+    name: string;
+    grade: number[];
 }
-declare class itemgen {
-    private items;
-    additems(item: itemc): void;
-    removeitem(product: string): void;
-    updatequan(product: string, quantity: number): void;
-    getvalue(): number;
-    logitems(): void;
+declare class gradebook {
+    private students;
+    addstudent(student: Student): void;
+    updategrades(name: string, newgrades: number[]): void;
+    getaverage(name: string): number | null;
+    getclassaverage(): number;
+    gettopstudent(): Student | null;
 }
-declare const store: itemgen;
 //# sourceMappingURL=main.d.ts.map

@@ -1,29 +1,35 @@
 "use strict";
-class itemgen {
+class gradebook {
     constructor() {
-        this.items = [];
+        this.students = [];
     }
-    additems(item) { this.items.push(item); }
-    removeitem(product) {
-        this.items = this.items.filter((item, index, array) => {
-            console.log(item, index, array);
-            return item.product !== product;
-        });
-    }
-    updatequan(product, quantity) {
-        const item = this.items.find(i => { i.quantity === quantity; });
-        if (item) {
-            item.quantity = quantity;
+    addstudent(student) { this.students.push(student); }
+    updategrades(name, newgrades) {
+        const student = this.students.find(s => s.name === name);
+        if (student) {
+            student.grade = newgrades;
         }
     }
-    getvalue() { return this.items.reduce((total, item) => total + (item.quantity * item.price), 0); }
-    logitems() { console.log(this.items); }
+    getaverage(name) {
+        const student = this.students.find(s => s.name === name);
+        if (!student) {
+            return null;
+        }
+        return student.grade.reduce((a, b) => a + b, 0) / student.grade.length;
+    }
+    getclassaverage() {
+        const allgrades = this.students.flatMap(s => s.grade);
+        return allgrades.reduce((a, b) => a + b, 0) / allgrades.length;
+    }
+    gettopstudent() {
+        if (this.students.length === 0) {
+            return null;
+        }
+        return this.students.reduce((top, curr) => {
+            const avgtop = top.grade.reduce((a, b) => a + b, 0) / top.grade.length;
+            const avgcurr = curr.grade.reduce((a, b) => a + b, 0) / curr.grade.length;
+            return avgcurr > avgtop ? curr : top;
+        });
+    }
 }
-const store = new itemgen();
-store.additems({ price: 900, quantity: 2, product: "laptop" });
-store.additems({ price: 2, quantity: 10, product: "milo packets" });
-store.updatequan("laptop", 5);
-store.removeitem("laptop");
-store.logitems();
-console.log("Total value", store.getvalue());
 //# sourceMappingURL=main.js.map
