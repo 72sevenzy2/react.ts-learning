@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, type JSX } from "react";
 
 interface countprops { step?: number };
 
-const Counter = ({ step = 1 }: countprops) => {
+const Counter = ({ step = 1 }: countprops): JSX.Element => {
     const [count, setc] = useState<number>(0);
 
     return (
