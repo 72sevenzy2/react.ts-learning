@@ -1,5 +1,6 @@
 import { useState, useEffect, type JSX } from "react";
 import increaseconfig from "./increase";
+import decreaseconfig from "./decrease";
 
 interface countl { step?: number };
 
@@ -8,6 +9,12 @@ const Counter = ({ step = 1 }: countl): JSX.Element => {
 
     useEffect(() => {
         const handler = (event: KeyboardEvent) => { increaseconfig(event, "increasebtn"); }
+        window.addEventListener("keydown", handler);
+        return () => { window.removeEventListener("keydown", handler); }
+    }, []);
+
+    useEffect(() => {
+        const handler = (event: KeyboardEvent) => { decreaseconfig(event, "decreasebtn"); }
         window.addEventListener("keydown", handler);
         return () => { window.removeEventListener("keydown", handler); }
     }, []);
