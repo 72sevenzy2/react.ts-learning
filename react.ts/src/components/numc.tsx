@@ -1,7 +1,7 @@
 import { useState, useEffect, type JSX } from "react";
-import increaseconfig from "./ts declarations/increase";
-import decreaseconfig from "./ts declarations/decrease";
-import resetconfig from "./ts declarations/reset";
+import increaseconfig from "./declarations/increase";
+import decreaseconfig from "./declarations/decrease";
+import resetconfig from "./declarations/reset";
 
 interface countl { step?: number };
 
