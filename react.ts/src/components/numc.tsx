@@ -9,19 +9,19 @@ const Counter = ({ step = 1 }: countl): JSX.Element => {
     const [count, setc] = useState<number>(0);
 
     useEffect(() => {
-        const handler = (event: KeyboardEvent) => { increaseconfig(event, "increasebtn"); }
+        const handler = (event: KeyboardEvent): void => { increaseconfig(event, "increasebtn"); }
         window.addEventListener("keydown", handler);
         return () => { window.removeEventListener("keydown", handler); }
     }, []);
 
     useEffect(() => {
-        const handler = (event: KeyboardEvent) => { decreaseconfig(event, "decreasebtn"); }
+        const handler = (event: KeyboardEvent): void => { decreaseconfig(event, "decreasebtn"); }
         window.addEventListener("keydown", handler);
         return () => { window.removeEventListener("keydown", handler); }
     }, []);
 
     useEffect(() => {
-        const handler = (event: KeyboardEvent) => { resetconfig(event, setc); }
+        const handler = (event: KeyboardEvent): void => { resetconfig(event, setc); }
         window.addEventListener("keydown", handler);
         return () => { window.removeEventListener("keydown", handler); }
     }, []);
