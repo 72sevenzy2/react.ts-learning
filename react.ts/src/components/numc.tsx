@@ -1,9 +1,9 @@
 import { useState, useEffect, type JSX } from "react";
-import increaseconfig from "./declarations/increase";
-import decreaseconfig from "./declarations/decrease";
-import resetconfig from "./declarations/reset";
+import resetconfig from "../config/reset";
+import decreaseconfig from "../config/decrease";
+import increaseconfig from "../config/increase";
 
-interface countl { step?: number };
+interface countl { step?: number }; 
 
 const Counter = ({ step = 1 }: countl): JSX.Element => {
     const [count, setc] = useState<number>(0);

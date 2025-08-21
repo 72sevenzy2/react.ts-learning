@@ -1,5 +1,5 @@
 import React, { useState, useReducer, type JSX } from "react";
-import submitconfig from "./declarations/submit";
+import submitconfig from "../config/submit";
 
 interface Todo { text: string; id: number; }
 interface Addac { type: "add"; payload: string; }
