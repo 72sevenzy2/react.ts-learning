@@ -11,10 +11,9 @@ const Todoapp = (): JSX.Element => {
 
     const handledelete = (id: number) => { setint(int.filter(todo => todo.id !== id)); }
 
-    const handleadd = () => {
-        if (args.trim() !== "") {
-            return setint([...int, { text: args, id: Date.now() }]);
-        } setter("");
+    const handleadd = (): void | undefined => {
+        if (!args.trim()) { return undefined }
+        setint([...int, { text: args, id: Date.now() }]); setter("");
     }
 
     return (
