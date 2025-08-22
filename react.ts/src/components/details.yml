@@ -9,6 +9,7 @@ dependecies:
     - typescript
     - YAML
     - javascript
+    - SCSS with CSS mapping
   linting:
     enabled: true
     lint-tooling: eslint
