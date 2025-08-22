@@ -9,7 +9,7 @@ const Todoapp = (): JSX.Element => {
 
     const btnsub: string = "initialbutton";
 
-    const handledelete = (id: number) => { return int.filter(todo => todo.id !== id); }
+    const handledelete = (id: number) => { setint(int.filter(todo => todo.id !== id)); }
 
     const handleadd = () => {
         if (args.trim() !== "") {
