@@ -1,0 +1,20 @@
+---
+Contributers:
+  - name: 72
+  - role: upcoming fullstack engineer
+  - email: 72sevenzy2@gmail.com
+dependecies:
+  frontend:
+    - React-dom
+    - typescript
+    - YAML
+    - javascript
+  linting:
+    enabled: true
+    lint-tooling: eslint
+  testing:
+    coverage: null
+    framework: null
+details:
+  component types: typescript XML
+  components: 2

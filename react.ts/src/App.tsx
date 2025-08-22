@@ -5,7 +5,7 @@ import Todoapp from "./components/todo.tsx";
 function App() {
   return (
     <>
-      <Counter></Counter>
+      <Todoapp></Todoapp>
     </>
   )
 }

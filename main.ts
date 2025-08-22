@@ -10,7 +10,7 @@ class Newbook {
     if (bezz.borrowed) { return "book already borrowed"; }
     bezz.borrowed = true; return `you borrowed the book ${bezz.title}`;
   }
-  returnbook(id: number): string {
+  returnbook(id: number): string | undefined {
       const bezz = this.books.find(j => j.id === id);
       if (!bezz) { return "invalid book"; }
       if (!bezz.borrowed) { return "u already returned the book"; }

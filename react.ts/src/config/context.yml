@@ -1,0 +1,7 @@
+---
+Purpose of this file: organizing files without all the extra configurations in javascript getting messy
+author: >
+languages:
+  d.ts: true
+  javascript: true
+name: 72
