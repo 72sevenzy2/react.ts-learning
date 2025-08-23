@@ -1,4 +1,4 @@
-import React, { useReducer, useState, type JSX } from "react";
+import React, { useReducer, useState, useEffect, type JSX } from "react";
 import submitconfig from "../config/submit";
 import todosdata from "./data/tododata.json";
 
@@ -21,8 +21,12 @@ const reducerfunc = (state: Todo[], action: todoargs): Todo[] => {
 
 const Todoapp = (): JSX.Element => {
     const [args, setter] = useState<string>("");
-    const [todos, dispatch] = useReducer(reducerfunc, todosdata as []);
+    const [todos, dispatch] = useReducer(reducerfunc, todosdata as Todo[], () => {
+        const saved = localStorage.getItem("todos");
+        return saved && saved !== "[]" ? JSON.parse(saved) : todosdata;
+    }); 
 
+    useEffect(() => { localStorage.setItem("todos", JSON.stringify(todos)); }, [todos]);
     const btnsub: string = "initialbutton";
     return (
         <div>
