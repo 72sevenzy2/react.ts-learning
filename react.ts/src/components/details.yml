@@ -19,3 +19,6 @@ dependecies:
 details:
   component types: typescript XML
   components: 2
+  config-types:
+    - javascript
+    - typescript declarations
