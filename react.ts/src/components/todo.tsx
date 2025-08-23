@@ -1,5 +1,6 @@
 import React, { useReducer, useState, type JSX } from "react";
 import submitconfig from "../config/submit";
+import todosdata from "./data/tododata.json";
 
 interface Todo { id: number; text: string };
 
@@ -20,7 +21,7 @@ const reducerfunc = (state: Todo[], action: todoargs): Todo[] => {
 
 const Todoapp = (): JSX.Element => {
     const [args, setter] = useState<string>("");
-    const [todos, dispatch] = useReducer(reducerfunc, [] as Todo[]);
+    const [todos, dispatch] = useReducer(reducerfunc, todosdata as []);
 
     const btnsub: string = "initialbutton";
     return (
