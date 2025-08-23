@@ -11,11 +11,11 @@ type State = {
     city: string; weather: WeatherData | null; forecast: ForecastData | null; error: string | null; loading: boolean;
 };
 
-type Action =
-    | { type: "SET_CITY"; payload: string }
-    | { type: "FETCH_START" }
-    | { type: "FETCH_SUCCESS"; payload: { weather: WeatherData; forecast: ForecastData } }
-    | { type: "FETCH_ERROR"; payload: string };
+interface set_city { type: "SET_CITY"; payload: string; }
+interface fetch_start { type: "FETCH_START"; }
+interface fetch_success { type: "FETCH_SUCCESS"; payload: { weather: WeatherData; forecast: ForecastData; } }
+interface fetch_error { type: "FETCH_ERROR"; payload: string; }
+type Action = set_city | fetch_start | fetch_success | fetch_error;
 
 const initialState: State = { city: "", weather: null, forecast: null, error: null, loading: false, };
 
