@@ -7,6 +7,7 @@ import WeatherDashboard from "./components/dashboard.tsx";
 function App(): JSX.Element {
   return (
     <>
+    <WeatherDashboard></WeatherDashboard>
     </>
   )
 }

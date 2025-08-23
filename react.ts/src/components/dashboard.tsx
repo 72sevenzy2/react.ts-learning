@@ -49,7 +49,7 @@ function reducer(state: State, action: Action): State {
 }
 
 // ---------------- Component ----------------
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = "6750c0ebce9c78bc663046acca0f650b";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 const WeatherDashboard: React.FC = () => {
@@ -80,13 +80,13 @@ const WeatherDashboard: React.FC = () => {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void | undefined => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!state.city) return;
         fetchWeather(state.city);
     };
 
-    useEffect((): void => {
+    useEffect(() => {
         const lastCity = localStorage.getItem("lastCity");
         if (lastCity) {
             dispatch({ type: "SET_CITY", payload: lastCity });
