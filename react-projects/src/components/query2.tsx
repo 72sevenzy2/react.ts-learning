@@ -16,7 +16,7 @@ const Pokemon = (): JSX.Element => {
   const { data, isError, error, refetch, isLoading } = useQuery<pokeapi>({
     queryKey: ["blahab", queryname],
     enabled: !!queryname,
-    queryFn: async (): Promise<pokeapi> => {
+    queryFn: async (): Promise<pokeapi> => {``
       const name = queryname!.toLowerCase().trim();
       const response = await axios.get<pokeapi>(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(name)}`);
       return response.data;
