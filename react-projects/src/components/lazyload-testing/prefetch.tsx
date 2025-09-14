@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { Suspense, lazy, useEffect, useState } from "react";
 
-const Profile = lazy(() => import("./profile"));
+const Profile = lazy(() => import("./profile2"));
 
 const Prefetch = (): JSX.Element => {
     const [view, setview] = useState<boolean>(false);

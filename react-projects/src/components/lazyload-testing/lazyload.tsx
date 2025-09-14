@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { Suspense, lazy, useState } from "react";
 
-const Profile = lazy(() => import("./profile"));
+const Profile = lazy(() => import("./profile2"));
 const Desc = lazy(() => import("./desc"));
 
 function preloadprofile() {

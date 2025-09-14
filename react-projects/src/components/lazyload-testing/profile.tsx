@@ -1,8 +1,10 @@
 import React from 'react';
 
- const Profile = () => {
+interface greetprops { name: string };
+
+const Profile = ({ name }: greetprops) => {
     return (
-        <div>profile</div>
+        <div>hellp {name}</div>
     )
 }
 
